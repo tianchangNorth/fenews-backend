@@ -18,15 +18,18 @@ for (const article of articles) {
   }
 
   try {
-    const tags = await chatWithAI(`请为以下内容提取3-5个关键词，返回数组格式：\n\n${article.title}\n\n${article.brief}`);
+    const ratingText  = await chatWithAI(`文章标题：${article.title}\n\n文章简介: ${article.brief}`);
+    let rating = parseFloat(ratingText.trim());
 
+    if (isNaN(rating)) {
+      rating = 5.0; // fallback
+    }
     await ProcessedArticle.create({
       title: article.title,
       url: article.url,
       img: article.img,
       brief: article.brief,
-      tags: JSON.parse(tags),
-      // categories: ['前端'], // 可选：你也可以用 AI 提取
+      rating, // 添加 AI 评分
       source: article.source,
     });
 

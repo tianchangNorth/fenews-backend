@@ -16,7 +16,7 @@ export async function chatWithAI(prompt) {
       {
         model: 'deepseek-chat',
         messages: [
-          { role: 'system', content: '你是一个技术资讯助手，只返回一个 JSON 数组，格式如下：["关键词1", "关键词2", "关键词3"]。不要包含其它内容。' },
+          { role: 'system', content: '请你作为技术编辑，为下面的文章从 0 到 10 打一个分，保留一位小数。评分越高代表内容越有深度、技术含量越高、有价值。只返回一个数字，不要解释' },
           { role: 'user', content: prompt },
         ],
         temperature: 0.7,
