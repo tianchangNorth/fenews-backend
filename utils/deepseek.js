@@ -1,12 +1,12 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
+// import dotenv from 'dotenv';
+// import { fileURLToPath } from 'url';
+// import { dirname, resolve } from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-dotenv.config({ path: resolve(__dirname, '../.env') });
-
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+// dotenv.config({ path: resolve(__dirname, '../.env') });
+// dotenv.config();
 export async function chatWithAI(prompt) {
   console.log(`🤖 AI 请求: ${prompt}`);
 
@@ -30,7 +30,7 @@ export async function chatWithAI(prompt) {
     );
 
     return res.data.choices?.[0]?.message?.content?.trim();
-    
+
   } catch (err) {
     console.error('❌ 调用 DeepSeek 出错：', err?.response?.data || err.message);
     return [];

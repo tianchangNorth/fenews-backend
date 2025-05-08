@@ -1,16 +1,8 @@
-// scripts/processArticles.js
-import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import Article from '../models/article.js';
 import ProcessedArticle from '../models/processedArticle.js';
 import { chatWithAI } from '../utils/deepseek.js'; // 你封装的 AI 调用函数
-import { fileURLToPath } from 'url'
-import { dirname, resolve } from 'path'
-
-// 获取当前文件目录
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-dotenv.config({ path: resolve(__dirname, '../.env') })
+import '../utils/loadEnv.js'
 
 await mongoose.connect(process.env.MONGO_URI);
 
