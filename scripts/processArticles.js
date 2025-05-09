@@ -18,7 +18,7 @@ for (const article of articles) {
   }
 
   try {
-    const ratingText  = await chatWithAI(`文章标题：${article.title}\n\n文章简介: ${article.brief}`);
+    const ratingText  = await chatWithAI(`文章标题：${article.title}\n文章简介: ${article.brief}`);
     let rating = parseFloat(ratingText.trim());
 
     if (isNaN(rating)) {

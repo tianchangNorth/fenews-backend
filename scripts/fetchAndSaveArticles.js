@@ -2,6 +2,13 @@ import { execFile } from 'child_process'
 import mongoose from 'mongoose'
 import Article from '../models/article.js'
 import '../utils/loadEnv.js'
+import { fileURLToPath } from 'url'
+import { dirname, resolve } from 'path'
+
+// 获取当前文件目录
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const pythonScriptPath = resolve(__dirname, '../crawlers/juejin.py')
 
 async function main() {
   await mongoose.connect(process.env.MONGO_URI)

@@ -8,7 +8,7 @@ import axios from 'axios';
 // dotenv.config({ path: resolve(__dirname, '../.env') });
 // dotenv.config();
 export async function chatWithAI(prompt) {
-  console.log(`🤖 AI 请求: ${prompt}`);
+  console.log(`\n\n🤖 AI 请求: ${prompt}`);
 
   try {
     const res = await axios.post(
