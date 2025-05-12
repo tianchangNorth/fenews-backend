@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start:schedule": "node ./scripts/schedule.js",
-    "start:server": "node app.js"
+    "start:schedule": "nodemon ./scripts/schedule.js",
+    "start:server": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongoose": "^8.14.1",
-    "node-cron": "^3.0.3"
+    "node-cron": "^3.0.3",
+    "nodemon": "^3.1.10"
   }
 }

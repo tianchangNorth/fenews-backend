@@ -13,6 +13,7 @@ const __dirname = dirname(__filename)
 
 const pythonScriptPath1 = resolve(__dirname, '../crawlers/juejin.py')
 const pythonScriptPath2 = resolve(__dirname, '../crawlers/medium.py')
+const pythonScriptPath3 = resolve(__dirname, '../crawlers/wired.py')
 
 async function runScript(scriptPath) {
   try {
@@ -26,20 +27,22 @@ async function runScript(scriptPath) {
 
 async function main() {
   await mongoose.connect(process.env.MONGO_URI)
-  await Article.deleteMany({})
   console.log('🚀 MongoDB 已连接，开始调用爬虫脚本...')
+  await Article.deleteMany({})
+  console.log('🚀 MongoDB 数据库清理完成')
 
   const results1 = await runScript(pythonScriptPath1)
   const results2 = await runScript(pythonScriptPath2)
+  const results3 = await runScript(pythonScriptPath3)
 
-  const allArticles = [...results1, ...results2]
+  const allArticles = [...results1, ...results2, ...results3]
 
   for (const item of allArticles) {
     const exists = await Article.findOne({ url: item.url })
     if (!exists) {
       const source = item.url.includes('juejin.cn') ? 'juejin' : 'medium'
       await Article.create({ ...item, source })
-      console.log('✅ 插入成功:', item.title)
+      console.log(item.source, '✅ 插入成功:', item.title)
     } else {
       console.log('⏭ 已存在:', item.title)
     }

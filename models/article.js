@@ -26,7 +26,11 @@ const ArticleSchema = new mongoose.Schema({
   source: {
     type: String,
     default: 'juejin',
-  }
+  },
+  category: {
+    type: String,
+    default: 'none',
+  },
 })
 
 export default mongoose.model('Article', ArticleSchema)

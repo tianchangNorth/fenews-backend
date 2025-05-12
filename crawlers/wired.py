@@ -3,6 +3,7 @@ import requests
 import json
 import sys
 import io
+import time
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
@@ -22,12 +23,13 @@ def get_wired_articles():
         for item in data:
                 results.append({
                     'title': item.find('h3',class_='SummaryItemHedBase-hiFYpQ dzwliP summary-item__hed').text.strip(),
-                    'url':'https://www.wired.com/category/'+ item.find('a',class_='SummaryItemHedLink-civMjp ejgyuy summary-item-tracking__hed-link summary-item__hed-link').href.text.strip(),
-                    # 'img': info.get('cover_image', ''),
-                    # 'brief': info.get('brief_content', ''),
-                    # 'created_at': info.get('ctime')
+                    'url':f'https://www.wired.com{item.find('a',class_='SummaryItemHedLink-civMjp ejgyuy summary-item-tracking__hed-link summary-item__hed-link').get('href')}',
+                    'img': item.find('img').get('src'),
+                    'brief': '',
+                    'created_at': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
+                    'category': 'news',
+                    'source': 'wired'
                 })
-
         return results
 
     except Exception as e:

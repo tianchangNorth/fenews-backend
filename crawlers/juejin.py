@@ -34,7 +34,9 @@ def get_juejin_articles():
                     'url': f"https://juejin.cn/post/{info.get('article_id')}",
                     'img': info.get('cover_image', ''),
                     'brief': info.get('brief_content', ''),
-                    'created_at': info.get('ctime')
+                    'created_at': info.get('ctime'),
+                    'category':'technology',
+                    'source': 'juejin'
                 })
 
         return results

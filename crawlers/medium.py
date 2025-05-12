@@ -55,6 +55,8 @@ def get_medium_articles():
                 "img":f"https://miro.medium.com/v2/resize:fit:720/format:webp/{post.get("previewImage", {}).get("id")}" ,
                 "brief": post.get("extendedPreviewContent", {}).get("subtitle"),
                 "created_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(post.get("firstPublishedAt")/1000)),
+                "category": "news",
+                "source": "medium"
             })
         
         paging_info = feed.get("pagingInfo")
